@@ -1,0 +1,18 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: snowflake-exporter
+  namespace: monitoring  # Set to 'monitoring' namespace
+  labels:
+    release: Prometheus  # Ensure this matches your Prometheus release label
+spec:
+  selector:
+    matchLabels:
+      app: snowflake-exporter
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 60s
+  namespaceSelector:
+    matchNames:
+      - monitoring  # Namespace where the exporter is deployed

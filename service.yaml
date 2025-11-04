@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: snowflake-exporter
+  namespace: monitoring  # Set to 'monitoring' namespace
+  labels:
+    app: snowflake-exporter
+spec:
+  ports:
+    - port: 8000
+      targetPort: 8000
+      name: http
+  selector:
+    app: snowflake-exporter
